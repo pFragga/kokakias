@@ -1,0 +1,27 @@
+Transaction List
+{
+    Downpayment 1
+    {
+        Employee Karl
+        Value 100
+    }
+
+    Downpayment 2
+    {
+        Employee Petros
+        Value 200
+    }
+
+    Finalized 1
+    {
+        Employee Theodore
+        Value  800
+    }
+
+    Compensation 1
+    {
+        Employee John
+        Value 90
+        ExpenseType Insurance
+    }
+}

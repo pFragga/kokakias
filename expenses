@@ -1,0 +1,34 @@
+Expense List
+{
+    Expense 1
+    {
+        Employee "Theodore"
+        ExpenseType Travel
+        Amount 400
+        Reason "London - NYC"
+    }
+
+    Expense 2
+    {
+        Employee "John"
+        ExpenseType Food
+        Amount 20
+        Reason "Dinner"
+    }
+
+    Expense 3
+    {
+        Employee "Karl"
+        ExpenseType WorkingFromHome
+        Amount 80
+        Reason "PC Monitor"
+    }
+
+    Expense 4
+    {
+        Employee "Petros"
+        ExpenseType Healthcare
+        Amount 50
+        Reason "Doctor visit"
+    }
+}
