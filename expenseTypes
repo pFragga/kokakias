@@ -2,7 +2,6 @@ Expense Type List
 {
     Travel
     {
-        Type 1
         ID 2368
         Desc "Travel"
         MaxMonthlyExpense 1000$
@@ -12,7 +11,6 @@ Expense Type List
 
     Food
     {
-        Type 1
         ID 1542
         Desc "Food"
         MaxMonthlyExpense 500$
@@ -22,7 +20,6 @@ Expense Type List
 
     Insurance
     {
-        Type 2
         ID 1543
         Desc "Insurance"
         MaxMonthlyExpense 350$
@@ -31,7 +28,6 @@ Expense Type List
 
     Healthcare
     {
-        Type 2
         ID 6589
         Desc "Healthcare"
         MaxMonthlyExpense 700$
@@ -40,7 +36,6 @@ Expense Type List
 
     Recreation
     {
-        Type 1
         ID 6900
         Desc "Healthcare"
         MaxMonthlyExpense 400$
@@ -50,7 +45,6 @@ Expense Type List
 
     Working From Home
     {
-        Type 2
         ID 5658
         Desc "Working from Home"
         MaxMonthlyExpense 1000$
