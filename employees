@@ -1,0 +1,30 @@
+Employees
+{
+    Petros
+    {
+        FirstName "Petros"
+        LastName "Frangatzis"
+        MaxMonthlyTotal 1000$
+    }
+
+    Theodore
+    {
+        FirstName "Theodore"
+        LastName "Balas"
+        MaxMonthlyTotal 600$
+    }
+
+    Karl
+    {
+        FirstName "Karl"
+        LastName "Marx"
+        MaxMonthlyTotal 200$
+    }
+
+    John
+    {
+        FirstName "John"
+        LastName "Lennon"
+        MaxMonthlyTotal 800$
+    }
+}
