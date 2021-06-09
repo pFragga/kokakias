@@ -651,12 +651,33 @@ public class MainApp {
 
         return expenseType = expenseTypes.get(index - 1);
     }
+    
+    //FileReader
+    void readFile() throws IOException {
+        fileReader myFileReader = new fileReader();
+        FileReader Reader = new FileReader("expenseTypes");
+        BufferedReader bReader = new BufferedReader(Reader);
+        String line = null;
+
+        if (bReader != null) {
+            line = bReader.readLine();
+        }
+
+        if (bReader != null) {
+            bReader.close();
+        }
+
+        if (Reader != null) {
+            Reader.close();
+        }
+    }
 
     //main function
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Welcome to MainApp!");
         MainApp myapp = new MainApp();
         myapp.mainMenu();
+        myapp.readFile();
         myapp.loadData();
     }
 }
