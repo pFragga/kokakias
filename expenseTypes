@@ -1,54 +1,60 @@
-Expense Type List
+EXPENSE_TYPE_LIST
 {
-    Travel
+    TRAVEL
     {
+        TYPE 1
         ID 2368
-        Desc "Travel"
-        MaxMonthlyExpense 1000$
-        Price 10$
-        UnitOfMeasurement kms
+        DESC "TRAVELLING"
+        MAX_MONTHLY_EXPENSE 1000
+        PRICE 200
+        UNIT_OF_MEASUREMENT "KILOMETER"
     }
 
-    Food
+    FOOD
     {
+        TYPE 1
         ID 1542
-        Desc "Food"
-        MaxMonthlyExpense 500$
-        Price 1000$
-        UnitOfMeasurement kms
+        DESC "DINNER"
+        MAX_MONTHLY_EXPENSE 500
+        PRICE 10
+        UNIT_OF_MEASUREMENT "DAY"  
     }
 
-    Insurance
+    INSURANCE
     {
+        TYPE 2
         ID 1543
-        Desc "Insurance"
-        MaxMonthlyExpense 350$
-        Rate 60%
+        DESC "CAR_INSURANCE"
+        MAX_MONTHLY_EXPENSE 350
+        REIMBURSEMENT_RATE 60
     }
 
-    Healthcare
+    HEALTHCARE
     {
-        ID 6589
-        Desc "Healthcare"
-        MaxMonthlyExpense 700$
-        Rate 50%
+        TYPE 2
+        ID 6705
+        DESC "TREATMENT"
+        MAX_MONTHLY_EXPENSE 500
+        REIMBURSEMENT_RATE 70
     }
 
-    Recreation
+    RECREATION
     {
-        ID 6900
-        Desc "Healthcare"
-        MaxMonthlyExpense 400$
-        Price 100$
-        UnitOfMeasurement activity
+        TYPE 1
+        ID 2436
+        DESC "LEISURE"
+        MAX_MONTHLY_EXPENSE 100
+        PRICE 1
+        UNIT_OF_MEASUREMENT "ACTIVITY"  
     }
 
-    Working From Home
+    WORKING_FROM_HOME
     {
-        ID 5658
-        Desc "Working from Home"
-        MaxMonthlyExpense 1000$
-        Rate 80%
+        TYPE 2
+        ID 1101
+        DESC "LOCKDOWN"
+        MAX_MONTHLY_EXPENSE 1000
+        REIMBURSEMENT_RATE 80
     }
 
     //**
