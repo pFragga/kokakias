@@ -1,53 +1,53 @@
 EXPENSE_TYPE_LIST
 {
-    TRAVEL
+    EXPENSE_TYPE
     {
         TYPE 1
         ID 2368
-        DESC "TRAVELLING"
+        DESC "TRAVEL"
         MAX_MONTHLY_EXPENSE 1000
         PRICE 200
         UNIT_OF_MEASUREMENT "KILOMETER"
     }
-    FOOD
+    EXPENSE_TYPE
     {
         TYPE 1
         ID 1542
-        DESC "DINNER"
+        DESC "FOOD"
         MAX_MONTHLY_EXPENSE 500
         PRICE 10
         UNIT_OF_MEASUREMENT "DAY"  
     }
-    INSURANCE
+    EXPENSE_TYPE
     {
         TYPE 2
         ID 1543
-        DESC "CAR_INSURANCE"
+        DESC "INSURANCE"
         MAX_MONTHLY_EXPENSE 350
         REIMBURSEMENT_RATE 60
     }
-    HEALTHCARE
+    EXPENSE_TYPE
     {
         TYPE 2
         ID 6705
-        DESC "TREATMENT"
+        DESC "HEALTHCARE"
         MAX_MONTHLY_EXPENSE 500
         REIMBURSEMENT_RATE 70
     }
-    RECREATION
+    EXPENSE_TYPE
     {
         TYPE 1
         ID 2436
-        DESC "LEISURE"
+        DESC "RECREATION"
         MAX_MONTHLY_EXPENSE 100
         PRICE 1
         UNIT_OF_MEASUREMENT "ACTIVITY"  
     }
-    WORKING_FROM_HOME
+    EXPENSE_TYPE
     {
         TYPE 2
         ID 1101
-        DESC "LOCKDOWN"
+        DESC "WORKING_FROM_HOME"
         MAX_MONTHLY_EXPENSE 1000
         REIMBURSEMENT_RATE 80
     }
