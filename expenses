@@ -1,34 +1,34 @@
-Expense List
+EXPENSE_LIST
 {
-    Expense 1
+    EXPENSE_1
     {
-        Employee "Theodore"
-        ExpenseType Travel
-        Amount 400
-        Reason "London - NYC"
+        EMPLOYEE_CODE 1324
+        EXPENSE_TYPE 1
+        AMOUNT 300
+        REASON "BUSINESS_FLIGHT"
     }
 
     Expense 2
     {
-        Employee "John"
-        ExpenseType Food
-        Amount 20
-        Reason "Dinner"
+        EMPLOYEE_CODE 1002
+        EXPENSE_TYPE 1
+        AMOUNT 5
+        REASON "MEALS"
     }
 
     Expense 3
     {
-        Employee "Karl"
-        ExpenseType WorkingFromHome
-        Amount 80
-        Reason "PC Monitor"
+        EMPLOYEE_CODE 1003
+        EXPENSE_TYPE 2
+        AMOUNT 480
+        REASON "PC_MONITOR"
     }
 
     Expense 4
     {
-        Employee "Petros"
-        ExpenseType Healthcare
-        Amount 50
-        Reason "Doctor visit"
+        EMPLOYEE_CODE 2004
+        EXPENSE_TYPE 2
+        AMOUNT 500
+        REASON "CAR_ACCIDENT"
     }
 }
