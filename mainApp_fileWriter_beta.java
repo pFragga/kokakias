@@ -754,6 +754,20 @@ public class mainApp {
         return trnType;
     }
     
+    ExpenseType findExpenseTypeFromDesc (String description) {
+        ExpenseType expType=null;
+		
+        for (ExpenseType expenseType : expenseTypes) {
+            String desc = expenseType.getDescription();
+            if (desc == description) {
+		expType = expenseType;
+                break;
+            }
+	}
+        
+        return expType;
+    }
+    
     public static void main(String[] args) {
         System.out.println("Welcome to MainApp!");
         mainApp myapp = new mainApp();
