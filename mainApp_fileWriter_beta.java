@@ -673,19 +673,18 @@ public class mainApp {
 								+ "\n" + "\t" + "{" 
                                 + "\n" + "\t\t" + "EMPLOYEE_CODE " + expense.getEmployee()
                                 + "\n" + "\t\t" + "EXPENSE_TYPE "    + findExpenseType(expense.getExpenseType())
-                                //+ "\n"+"\t"+"EXPENSE_CODE " + expense.getID()
+                                + "\n" + "\t\t" + "EXPENSE_CODE " + expense.getExpenseType().getDescription()
                                 + "\n" + "\t\t" + "VAL " + expense.getAmount()
                                 + "\n" + "\t" + "}");
             }
 			writer.write ("\n"+"}");
             writer.close();
         }
-			
 
         catch (IOException e) {
             System.err.println("Error writing file.");
         }
-    }//CreateFile
+    }
     
     public void printTransactionList() {
         
@@ -717,7 +716,7 @@ public class mainApp {
         catch (IOException e) {
             System.err.println("Error writing file.");
         }
-    }//CreateFile
+    }
     
     int findExpenseType(ExpenseType exp) {
         int type;
