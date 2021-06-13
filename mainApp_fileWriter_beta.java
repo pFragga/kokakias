@@ -123,6 +123,10 @@ class Expense {
     public double getAmount() {
         return this.amount;
     }
+	
+	public String getReason() {
+        return this.reason;
+    }
 
     public String toString() {
         return employee + ": " + amount + ". " + expenseType + ". The reason being: " + reason;
@@ -154,7 +158,7 @@ abstract class Transaction {
 
 // Downpayment class
 class Downpayment extends Transaction {
-    public Downpayment(Employee employee, double value) {
+    public Downpayment(Employee	 employee, double value) {
         super(employee, value);
     }
 
@@ -675,6 +679,7 @@ public class mainApp {
                                 + "\n" + "\t\t" + "EXPENSE_TYPE "    + findExpenseType(expense.getExpenseType())
                                 + "\n" + "\t\t" + "EXPENSE_CODE " + expense.getExpenseType().getDescription()
                                 + "\n" + "\t\t" + "VAL " + expense.getAmount()
+								+ "\n" + "\t\t" + "REASON " + expense.getReason()
                                 + "\n" + "\t" + "}");
             }
 			writer.write ("\n"+"}");
