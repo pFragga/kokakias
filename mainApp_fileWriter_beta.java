@@ -19,6 +19,14 @@ class Employee {
         this.surname = s;
         this.maxMonthlyTotal = maxMonthlyTotal;
     }
+    
+    public String getName() {
+        return this.name;
+    }
+	
+    public String getSurname() {
+        return this.surname;
+    }
 
     public double getMaxMonthlyTotal() {
         return this.maxMonthlyTotal;
@@ -766,6 +774,21 @@ public class mainApp {
 	}
         
         return expType;
+    }
+    
+    Employee findEmployeeFromName (String name, String surname) {
+            Employee emp = null;
+
+            for (Employee employee : employees) {
+                    String n = employee.getName();
+                    String s = employee.getSurname();
+                    if (name == n & surname == s) {
+                            emp = employee;
+                            break;
+                    }
+            }
+
+            return emp;
     }
     
     public static void main(String[] args) {
