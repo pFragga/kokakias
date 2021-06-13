@@ -1,71 +1,107 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+    //FileReader
+    void readFile() throws IOException {
+        BufferedReader reader = null;
+        ExpenseType expenseType = null;
+        String line;
+        System.out.println("\n>>>>>>>>>>>>>> Adding Objects (ExpenseType) from File to List ...");
 
-class fileReader {
-    ArrayList<ExpenseType> expenseTypes = new ArrayList<ExpenseType>();
-        
-        void createList() {
-            System.out.println("------------------Creating Expense Types and adding to List------------------\n...\n...\n...");
-            ExpenseType1 travel = new ExpenseType1(2368, "travel", 1000, 10, "kms");
-            expenseTypes.add(travel);
-            ExpenseType1 food = new ExpenseType1(1542, "food", 500, 50, "meal");
-            expenseTypes.add(food);
-            ExpenseType1 rec = new ExpenseType1(6900, "recreation", 400, 100, "activity");
-            expenseTypes.add(rec);
-            ExpenseType2 health = new ExpenseType2(6589, "healthcare", 700, 50);
-            expenseTypes.add(health);
-            ExpenseType2 ins = new ExpenseType2(1543, "insurance", 350, 60);
-            expenseTypes.add(ins);
-            ExpenseType2 wfh = new ExpenseType2(5658, "working from home", 1000, 80);
-            expenseTypes.add(wfh);
+        try {
+            reader = new BufferedReader(new FileReader(new File("expenseTypes")));
+            line = reader.readLine();
+            while (line != null) {
+                if (line.trim().equals("EXPENSE_TYPE_LIST")) {
+                    line = reader.readLine();
+                    if (line.trim().equals("{")) {
+                        line = reader.readLine();
+                        if (line.trim().equals("EXPENSE_TYPE")) {
+                            line = reader.readLine();
+                            if (line.trim().equals("{")) {
+                                line = reader.readLine();
+                                if (line.trim().startsWith("TYPE ")) {
+                                    if (line.trim().substring(5).trim().equals("1")) {
+                                        line = reader.readLine(); //maybe not needed
+                                        int id = 0;
+                                        if (line.trim().startsWith("ID ")) {
+                                            id = Integer.parseInt(line.trim().substring(3).trim());
+                                        }
+                                        line = reader.readLine(); //maybe not needed
+                                        String desc = null;
+                                        if (line.trim().startsWith("DESC ")) {
+                                            desc = line.trim().substring(5).trim();
+                                        }
+                                        line = reader.readLine(); //idk bro
+                                        double max = 0;
+                                        if (line.trim().startsWith("MAX_MONTHLY_EXPENSE ")) {
+                                            max = Double.parseDouble(line.trim().substring(20).trim());
+                                        }
+                                        line = reader.readLine(); //bababooey
+                                        double price = 0;
+                                        if (line.trim().startsWith("PRICE ")) {
+                                            price = Double.parseDouble(line.trim().substring(6).trim());
+                                        }
+                                        line = reader.readLine(); //drink piss and live
+                                        String unit = null;
+                                        if (line.trim().startsWith("UNIT_OF_MEASUREMENT ")) {
+                                            unit = line.trim().substring(20).trim();
+                                        }
+                                        if (line.trim().equals("}")) {
+                                            expenseType = new ExpenseType1(id, desc, max, price, unit);
+                                            expenseTypes.add(expenseType);
+                                        }//ExpenseType1
+                                    } else if (line.trim().substring(5).trim().equals("2")) {
+                                        line = reader.readLine(); //maybe not needed
+                                        int id = 0;
+                                        if (line.trim().startsWith("ID ")) {
+                                            id = Integer.parseInt(line.trim().substring(3).trim());
+                                        }
+                                        line = reader.readLine(); //maybe not needed
+                                        String desc = null;
+                                        if (line.trim().startsWith("DESC ")) {
+                                            desc = line.trim().substring(5).trim();
+                                        }
+                                        line = reader.readLine(); //idk bro
+                                        double max = 0;
+                                        if (line.trim().startsWith("MAX_MONTHLY_EXPENSE ")) {
+                                            max = Double.parseDouble(line.trim().substring(20).trim());
+                                        }
+                                        line = reader.readLine(); //lesgooooo
+                                        double rate = 0;
+                                        if (line.trim().startsWith("RATE ")) {
+                                            rate = Double.parseDouble(line.trim().substring(5).trim());
+                                        }
+                                        line = reader.readLine();
+                                        if (line.trim().equals("}")) {
+                                            expenseType = new ExpenseType2(id, desc, max, rate);
+                                            expenseTypes.add(expenseType);
+                                        }//ExpenseType2
+                                    }
+                                }//TYPE
+                            }
+                        }//EXPENSETYPE
+                    }
+                }//EXPENSE_TYPE_LIST
+                line = reader.readLine();
+            }//while
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Error reading line");
         }
+    }
 
-        void printList() {
-            System.out.println("------------------Printing List------------------");
-            for (ExpenseType expenseType : expenseTypes) {
-                System.out.println(expenseType);
-            }
+    void printList() {
+        System.out.println("\n >>>>>>>>>>>> Printing List \n");
+        for (ExpenseType expenseType : expenseTypes) {
+            System.out.println(expenseType);
         }
+    }
 
-
-
-
-
-    public static void main(String[] args) throws Exception {
-        fileReader myFileReader = new fileReader();
-        myFileReader.createList();
-        myFileReader.printList();
-        
-
-
-        // FileReader Reader = new FileReader("expenseTypes");
-        // BufferedReader bReader = new BufferedReader(Reader);
-
-        // String line = null;
-        // if (bReader != null) {
-        //     line = bReader.readLine();
-        // }
-
-        // while (line != null) {
-        //     System.out.println(line);
-		// 	line = bReader.readLine();
-        // }
-
-        // if (bReader != null) {
-        //     bReader.close();;
-        // }
-
-        // if (Reader != null) {
-        //     Reader.close();
-        // }
-
-
-        // File myFile = new File("expenseTypes");
-        // File myFile2 = new File("employees");
-        // Scanner scanner = new Scanner(myFile);
-        // while (scanner.hasNextLine()) {
-        //     System.out.println(scanner.nextLine());
-        // }
+    //main function
+    public static void main(String[] args) throws IOException {
+        System.out.println("Welcome to MainApp!");
+        MainApp myapp = new MainApp();
+        myapp.readFile();
+        myapp.printList();
+        // myapp.mainMenu();
+        // myapp.loadData();
     }
 }
