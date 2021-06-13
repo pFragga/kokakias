@@ -660,23 +660,27 @@ public class mainApp {
     
     public void printExpenseList() {
         
-        System.out.println(" Priting expense list...");
+        System.out.println("Priting expense list...");
 
         FileWriter writer = null;
 
         try {
             writer = new FileWriter(new File("EXPENSES.txt"));
-
+			writer.write ("EXPENSE_LIST"
+						+"\n"+"{");
             for (Expense expense : expenses) {
-                    writer.write ("EXPENSE"+"\n"+"{"+"\n"
-                                + "\n"+"\t"+"EMPLOYEE_CODE " + expense.getEmployee()
-                                + "\n"+"\t"+"EXPENSE_TYPE "    + findExpenseType(expense.getExpenseType())
+                    writer.write ("\n" + "\t" + "EXPENSE"
+								+ "\n" + "\t" + "{" 
+                                + "\n" + "\t\t" + "EMPLOYEE_CODE " + expense.getEmployee()
+                                + "\n" + "\t\t" + "EXPENSE_TYPE "    + findExpenseType(expense.getExpenseType())
                                 //+ "\n"+"\t"+"EXPENSE_CODE " + expense.getID()
-                                + "\n"+"\t"+"VAL " + expense.getAmount()
-                                + "\n"+"}"+"\n");
-                }
-                writer.close();
+                                + "\n" + "\t\t" + "VAL " + expense.getAmount()
+                                + "\n" + "\t" + "}");
             }
+			writer.write ("\n"+"}");
+            writer.close();
+        }
+			
 
         catch (IOException e) {
             System.err.println("Error writing file.");
@@ -691,18 +695,22 @@ public class mainApp {
 
         try    {
             writer = new FileWriter(new File("TRANSACTIONS.txt"));
-        
+			writer.write ("TRN_LIST"
+						+"\n"+"{");
             for (Transaction transaction : transactions) {
-                    writer.write ("TRN"+"\n"+"{"+"\n"
-                                + "\n"+"\t"+"EMPLOYEE_CODE " + transaction.getEmployee()
-                                + "\n"+"\t"+"TYPE " + findTransactionType(transaction));
+                    writer.write ("\n" + "\t" + "TRN"
+								+ "\n" + "\t" + "{"
+                                + "\n" + "\t\t" + "EMPLOYEE_CODE " + transaction.getEmployee()
+                                + "\n" + "\t\t" + "TYPE " + findTransactionType(transaction));
                     if (transaction instanceof Compensation) {
                         Compensation compensation = (Compensation) transaction;
-                        writer.write ("\n"+"\t"+"EXPENSE_TYPE " + findExpenseType(compensation.getExpenseType())
-                                + "\n"+"\t"+"EXPENSE_CODE " + compensation.getExpenseType().getID());
+                        writer.write ("\n" + "\t\t" + "EXPENSE_TYPE " + findExpenseType(compensation.getExpenseType())
+                                + "\n" + "\t\t" + "EXPENSE_CODE " + compensation.getExpenseType().getID());
                     }
-                    writer.write ("\n"+"\t"+"VAL " + transaction.getValue());
+                    writer.write ("\n" + "\t\t" + "VAL " + transaction.getValue()
+								+ "\n" + "\t" + "}");
             }
+			writer.write ("\n" + "}");
             writer.close();
         }
             
@@ -727,7 +735,7 @@ public class mainApp {
         String trnType;
         
         if (trn instanceof Finalised) {
-            trnType = "Finsalised";
+            trnType = "Finalised";
         }
         else if (trn instanceof Compensation) {
             trnType = "Compensation";
