@@ -3,21 +3,28 @@ Suggrafeis:
 1100130 - Theodoros Balas
 3200234 - Peter Frangatzis
 */
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.*;
-import java.io.*;
 
 // Employee class
 class Employee {
     private String name, surname;
     private double maxMonthlyTotal;
 
-    public Employee(String n, String s, double maxMonthlyTotal) {
-        this.name = n;
-        this.surname = s;
-        this.maxMonthlyTotal = maxMonthlyTotal;
+    public Employee(String n, String s, double max) {
+        name = n;
+        surname = s;
+        maxMonthlyTotal = max;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getSurname() {
+        return this.surname;
     }
 
     public double getMaxMonthlyTotal() {
@@ -25,7 +32,7 @@ class Employee {
     }
 
     public String toString() {
-        return name + " " + surname;
+        return name + " " + surname + "\nEmployee's maximum monthly total: " + maxMonthlyTotal;
     }
 }
 
@@ -52,8 +59,12 @@ abstract class ExpenseType {
     public double getMaxMonthlyExpense() {
         return this.maxMonthlyExpense;
     }
+
+    public String toString() {
+        return "ID: " + getID() + "\nDescription: " + getDescription() + "\nMaximum monthly expense limit: " + getMaxMonthlyExpense();
+    }
 }
- 
+
 // ExpenseType1 class
 class ExpenseType1 extends ExpenseType {
     private double price;
@@ -75,7 +86,8 @@ class ExpenseType1 extends ExpenseType {
 
     @Override
     public String toString() {
-        return "Price per unit: " + this.price + "/" + this.unitOfMeasurement;
+        return "ID: " + getID() + "\nDescription: " + getDescription() + "\nMaximum monthly expense limit: " + getMaxMonthlyExpense()
+                + "\nPrice per unit: " + this.price + "/" + this.unitOfMeasurement;
     }
 }
 
@@ -94,7 +106,8 @@ class ExpenseType2 extends ExpenseType {
 
     @Override
     public String toString() {
-        return "To be reimbursed by: " + this.rate + "%";
+        return "ID: " + getID() + "\nDescription: " + getDescription() + "\nMaximum monthly expense limit: " + getMaxMonthlyExpense()
+                + "\nTo be reimbursed by: " + this.rate + "%";
     }
 }
 
@@ -146,14 +159,14 @@ abstract class Transaction {
     public double getValue() {
         return this.value;
     }
-    
+
     public String toString() {
         return "Transaction of " + this.getValue() + " made by " + this.getEmployee();
     }
 }
 
 // Downpayment class
-class Downpayment extends Transaction {
+class  Downpayment extends Transaction {
     public Downpayment(Employee employee, double value) {
         super(employee, value);
     }
@@ -208,7 +221,7 @@ class Finalised extends Transaction {
 }
 
 // MainApp class containing main function
-public class mainApp {
+public class MainApp {
     Scanner input;
     ArrayList<Employee> employees;
     ArrayList<Expense> expenses;
@@ -217,80 +230,78 @@ public class mainApp {
     public static int index;
 
     // Load data to create database
-    void loadData() {
-        Employee petros = new Employee("Peter", "Frangatzis", 1000);
-        employees.add(petros);
-        Employee theodore = new Employee("Theodore", "Balas", 600);
-        employees.add(theodore);
-        Employee karl = new Employee("Karl", "Marx", 200);
-        employees.add(karl);
-        Employee john = new Employee("John", "Lenon", 800);
-        employees.add(john);
-        ExpenseType1 travel = new ExpenseType1(2368, "travel", 1000, 10, "kms");
-        expenseTypes.add(travel);
-        ExpenseType1 food = new ExpenseType1(1542, "food", 500, 50, "meal");
-        expenseTypes.add(food);
-        ExpenseType1 rec = new ExpenseType1(6900, "recreation", 400, 100, "activity");
-        expenseTypes.add(rec);
-        ExpenseType2 health = new ExpenseType2(6589, "healthcare", 700, 50);
-        expenseTypes.add(health);
-        ExpenseType2 ins = new ExpenseType2(1543, "insurance", 350, 60);
-        expenseTypes.add(ins);
-        ExpenseType2 wfh = new ExpenseType2(5658, "working from home", 1000, 80);
-        expenseTypes.add(wfh);
-        Downpayment d1 = new Downpayment(karl, 100);
-        transactions.add(d1);
-        Downpayment d2 = new Downpayment(theodore, 500);
-        transactions.add(d2);
-        Downpayment d3 = new Downpayment(petros, 200);
-        transactions.add(d3);
-        Downpayment d4 = new Downpayment(john, 800);
-        transactions.add(d4);
-		Compensation c1 = new Compensation (john, 100, food);
-		transactions.add(c1);
-        /**
-         * We created 2 Finalised objects to test if printAll() worked properly
-         * 
-         * Finalised objects normally created through clearExpenses()
-         */
-        Finalised f1 = new Finalised(john, 800);
-        transactions.add(f1);
-        Finalised f2 = new Finalised(karl, 300);
-        transactions.add(f2);
-        Expense e1 = new Expense(theodore, travel, 30, "Edinburgh - Livingston");
-        expenses.add(e1);
-        Expense e2 = new Expense(theodore, food, 5, "meals");
-        expenses.add(e2);
-        Expense e3 = new Expense(theodore, ins, 500, "car");
-        expenses.add(e3);
-        Expense e4 = new Expense(karl, wfh, 500, "PC screen");
-        expenses.add(e4);
-        Expense e5 = new Expense(karl, health, 400, "check-up");
-        expenses.add(e5);
-        Expense e6 = new Expense(karl, rec, 3, "museum visits");
-        expenses.add(e6);
-        Expense e7 = new Expense(petros, health, 400, "doctor");
-        expenses.add(e7);
-        Expense e8 = new Expense(petros, ins, 1000, "liability");
-        expenses.add(e8);
-        Expense e9 = new Expense(petros, travel, 20, "cab ride");
-        expenses.add(e9);
-        Expense e10 = new Expense(john, wfh, 400, "bed");
-        expenses.add(e10);
-        Expense e11 = new Expense(john, wfh, 600, "guitar");
-        expenses.add(e11);
-        Expense e12 = new Expense(john, rec, 1, "day tripper");
-        expenses.add(e12);
-    }
+    // void loadData() {
+    //     Employee petros = new Employee("Peter", "Frangatzis", 1000);
+    //     employees.add(petros);
+    //     Employee theodore = new Employee("Theodore", "Balas", 600);
+    //     employees.add(theodore);
+    //     Employee karl = new Employee("Karl", "Marx", 200);
+    //     employees.add(karl);
+    //     Employee john = new Employee("John", "Lenon", 800);
+    //     employees.add(john);
+    //     ExpenseType1 travel = new ExpenseType1(2368, "travel", 1000, 10, "kms");
+    //     expenseTypes.add(travel);
+    //     ExpenseType1 food = new ExpenseType1(1542, "food", 500, 50, "meal");
+    //     expenseTypes.add(food);
+    //     ExpenseType1 rec = new ExpenseType1(6900, "recreation", 400, 100, "activity");
+    //     expenseTypes.add(rec);
+    //     ExpenseType2 health = new ExpenseType2(6589, "healthcare", 700, 50);
+    //     expenseTypes.add(health);
+    //     ExpenseType2 ins = new ExpenseType2(1543, "insurance", 350, 60);
+    //     expenseTypes.add(ins);
+    //     ExpenseType2 wfh = new ExpenseType2(5658, "working from home", 1000, 80);
+    //     expenseTypes.add(wfh);
+    //     Downpayment d1 = new Downpayment(karl, 100);
+    //     transactions.add(d1);
+    //     Downpayment d2 = new Downpayment(theodore, 500);
+    //     transactions.add(d2);
+    //     Downpayment d3 = new Downpayment(petros, 200);
+    //     transactions.add(d3);
+    //     Downpayment d4 = new Downpayment(john, 800);
+    //     transactions.add(d4);
+    //     /**
+    //      * We created 2 Finalised objects to test if printAll() worked properly
+    //      * 
+    //      * Finalised objects normally created through clearExpenses()
+    //      */
+    //     Finalised f1 = new Finalised(john, 800);
+    //     transactions.add(f1);
+    //     Finalised f2 = new Finalised(karl, 300);
+    //     transactions.add(f2);
+    //     Expense e1 = new Expense(theodore, travel, 30, "Edinburgh - Livingston");
+    //     expenses.add(e1);
+    //     Expense e2 = new Expense(theodore, food, 5, "meals");
+    //     expenses.add(e2);
+    //     Expense e3 = new Expense(theodore, ins, 500, "car");
+    //     expenses.add(e3);
+    //     Expense e4 = new Expense(karl, wfh, 500, "PC screen");
+    //     expenses.add(e4);
+    //     Expense e5 = new Expense(karl, health, 400, "check-up");
+    //     expenses.add(e5);
+    //     Expense e6 = new Expense(karl, rec, 3, "museum visits");
+    //     expenses.add(e6);
+    //     Expense e7 = new Expense(petros, health, 400, "doctor");
+    //     expenses.add(e7);
+    //     Expense e8 = new Expense(petros, ins, 1000, "liability");
+    //     expenses.add(e8);
+    //     Expense e9 = new Expense(petros, travel, 20, "cab ride");
+    //     expenses.add(e9);
+    //     Expense e10 = new Expense(john, wfh, 400, "bed");
+    //     expenses.add(e10);
+    //     Expense e11 = new Expense(john, wfh, 600, "guitar");
+    //     expenses.add(e11);
+    //     Expense e12 = new Expense(john, rec, 1, "day tripper");
+    //     expenses.add(e12);
+    // }
 
     // MainApp function
-    public mainApp() {
+    public MainApp() {
         input = new Scanner(System.in);
         employees = new ArrayList<Employee>();
         expenses = new ArrayList<Expense>();
         expenseTypes = new ArrayList<ExpenseType>();
         transactions = new ArrayList<Transaction>();
-        loadData();
+        // loadData();
     }
 
     // 1st Menu function: newExpenseType
@@ -312,11 +323,13 @@ public class mainApp {
             System.out.print("Enter unit of measurement: ");
             String u = input.nextLine();
             expenseTypes.add(new ExpenseType1(a, b, c, p, u));
+            System.out.println(new ExpenseType1(a, b, c, p, u).toString());
             } else {
             System.out.print("Enter rate: ");
             double r = input.nextDouble();
             input.nextLine();// skip new line
             expenseTypes.add(new ExpenseType2(a, b, c, r));
+            System.out.println(new ExpenseType2(a, b, c, r).toString());
         }
     }
 
@@ -547,8 +560,6 @@ public class mainApp {
                     printAll();
                     break;
                 case 0:
-                    printExpenseList();
-                    printTransactionList();
                     break;
                 default:
                     System.out.println("Invalid number!");
@@ -603,7 +614,7 @@ public class mainApp {
             }
         } while (!flag);
 
-        mainApp.index = menu;
+        MainApp.index = menu;
 
         return employee = employees.get(index - 1);
     }
@@ -653,38 +664,326 @@ public class mainApp {
             }
         } while (!flag);
 
-        mainApp.index = menu;
+        MainApp.index = menu;
 
         return expenseType = expenseTypes.get(index - 1);
     }
-    
+
+    ExpenseType findExpenseTypeFromDesc(String description) {
+        ExpenseType expType = null;
+        for (ExpenseType expenseType : expenseTypes) {
+            String desc = expenseType.getDescription();
+            if (desc == description) {
+                expType = expenseType;
+                break;
+            }
+        }
+        return expType;
+    }
+
+    Employee findEmployeeFromName(String surname) {
+        Employee emp = null;
+        for (Employee employee : employees) {
+            String s = employee.getSurname();
+            if (surname == s) {
+                emp = employee;
+                break;
+            }
+        }
+        return emp;
+    }
+
+    //FileReader
+    void readFile() throws IOException {
+        BufferedReader reader = null;
+        String line;
+
+        try {
+            reader = new BufferedReader(new FileReader(new File("EXPENSETYPES.txt")));
+            line = reader.readLine();
+            while (line != null) {
+                if (line.trim().equals("EXPENSE_TYPE_LIST")) {
+                    line = reader.readLine();
+                    if (line.trim().equals("{")) {
+                        line = reader.readLine();
+                        if (line.trim().equals("EXPENSE_TYPE")) {
+                            line = reader.readLine();
+                            if (line.trim().equals("{")) {
+                                line = reader.readLine();
+                                if (line.trim().startsWith("TYPE ")) {
+                                    if (line.trim().substring(5).trim().equals("1")) {
+                                        line = reader.readLine();
+                                        int id = 0;
+                                        if (line.trim().startsWith("ID ")) {
+                                            id = Integer.parseInt(line.trim().substring(3).trim());
+                                        }
+                                        line = reader.readLine();
+                                        String desc = null;
+                                        if (line.trim().startsWith("DESC ")) {
+                                            desc = line.trim().substring(5).trim();
+                                        }
+                                        line = reader.readLine();
+                                        double max = 0;
+                                        if (line.trim().startsWith("MAX_MONTHLY_EXPENSE ")) {
+                                            max = Double.parseDouble(line.trim().substring(20).trim());
+                                        }
+                                        line = reader.readLine();
+                                        double price = 0;
+                                        if (line.trim().startsWith("PRICE ")) {
+                                            price = Double.parseDouble(line.trim().substring(6).trim());
+                                        }
+                                        line = reader.readLine();
+                                        String unit = null;
+                                        if (line.trim().startsWith("UNIT_OF_MEASUREMENT ")) {
+                                            unit = line.trim().substring(20).trim();
+                                        }
+                                        line = reader.readLine();
+                                        ExpenseType1 expenseType = new ExpenseType1(id, desc, max, price, unit);
+                                        if (line.trim().equals("}")) {
+                                            expenseTypes.add(expenseType);
+                                        }//ExpenseType1
+                                    } else if (line.trim().substring(5).trim().equals("2")) {
+                                        line = reader.readLine();
+                                        int id = 0;
+                                        if (line.trim().startsWith("ID ")) {
+                                            id = Integer.parseInt(line.trim().substring(3).trim());
+                                        }
+                                        line = reader.readLine();
+                                        String desc = null;
+                                        if (line.trim().startsWith("DESC ")) {
+                                            desc = line.trim().substring(5).trim();
+                                        }
+                                        line = reader.readLine();
+                                        double max = 0;
+                                        if (line.trim().startsWith("MAX_MONTHLY_EXPENSE ")) {
+                                            max = Double.parseDouble(line.trim().substring(20).trim());
+                                        }
+                                        line = reader.readLine();
+                                        double rate = 0;
+                                        if (line.trim().startsWith("RATE ")) {
+                                            rate = Double.parseDouble(line.trim().substring(5).trim());
+                                        }
+                                        line = reader.readLine();
+                                        ExpenseType2 expenseType = new ExpenseType2(id, desc, max, rate);
+                                        if (line.trim().equals("}")) {
+                                            expenseTypes.add(expenseType);
+                                        }//ExpenseType2
+                                    }
+                                }//TYPE
+                            }
+                        }//EXPENSETYPE
+                    }
+                }//EXPENSE_TYPE_LIST
+                line = reader.readLine();
+            }//while
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Error reading line");
+        }
+
+        try {
+            reader = new BufferedReader(new FileReader(new File("EMPLOYEES.txt")));
+            line = reader.readLine();
+            while (line != null) {
+                if (line.trim().equals("EMPLOYEE_LIST")) {
+                    line = reader.readLine();
+                    if (line.trim().equals("{")) {
+                        line = reader.readLine();
+                        if (line.trim().equals("EMPLOYEE")) {
+                            line = reader.readLine();
+                            if (line.trim().equals("{")) {
+                                line = reader.readLine();
+                                String n = null;
+                                if (line.trim().startsWith("FIRST_NAME ")) {
+                                    n = line.trim().substring(11).trim();
+                                }
+                                line = reader.readLine();
+                                String s = null;
+                                if (line.trim().startsWith("LAST_NAME ")) {
+                                    s = line.trim().substring(10).trim();
+                                }
+                                line = reader.readLine();
+                                double maxMonthlyTotal = 0;
+                                if (line.trim().startsWith("MAX_MONTHLY_EXPENSE ")) {
+                                    maxMonthlyTotal = Double.parseDouble(line.trim().substring(20).trim());
+                                }
+                                line = reader.readLine();
+                                Employee employee = new Employee(n, s, maxMonthlyTotal);
+                                if (line.trim().equals("}")) {
+                                    employees.add(employee);
+                                }
+                            }
+                        }//EMPLOYEE
+                    }
+                }//EMPLOYEE_LIST
+                line = reader.readLine();
+            }//while
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Error reading line");
+        }
+
+        try {
+            reader = new BufferedReader(new FileReader(new File("EXPENSES.txt")));
+            line = reader.readLine();
+            while (line != null) {
+                if (line.trim().equals("EXPENSE_LIST")) {
+                    line = reader.readLine();
+                    if (line.trim().equals("{")) {
+                        line = reader.readLine();
+                        if (line.trim().equals("EXPENSE")) {
+                            line = reader.readLine();
+                            if (line.trim().equals("{")) {
+                                line = reader.readLine();
+                                Employee emp = null;
+                                if (line.trim().startsWith("EMPLOYEE_CODE ")) {
+                                    emp = findEmployeeFromName(line.trim().substring(14).trim());
+                                }
+                                line = reader.readLine();
+                                ExpenseType type = null;
+                                if (line.trim().startsWith("EXPENSE_CODE ")) {
+                                    type = findExpenseTypeFromDesc(line.trim().substring(13).trim());
+                                }
+                                line = reader.readLine();
+                                double amount = 0;
+                                if (line.trim().startsWith("VAL ")) {
+                                    amount = Double.parseDouble(line.trim().substring(4).trim());
+                                }
+                                line = reader.readLine();
+                                String reason = null;
+                                if (line.trim().startsWith("REASON ")) {
+                                    reason = line.trim().substring(7).trim();
+                                }
+                                line = reader.readLine();
+                                Expense expense = new Expense(emp, type, amount, reason);
+                                if (line.trim().equals("}")) {
+                                    expenses.add(expense);
+                                }
+                            }
+                        }//EXPENSE
+                    }
+                }//EXPENSE_LIST
+                line = reader.readLine();
+            }//while
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Error reading line");
+        }
+
+        try {
+            reader = new BufferedReader(new FileReader(new File("TRANSACTIONS.TXT")));
+            line = reader.readLine();
+            while (line != null) {
+                if (line.trim().equals("TRN_LIST")) {
+                    line = reader.readLine();
+                    if (line.trim().equals("{")) {
+                        line = reader.readLine();
+                        if (line.trim().equals("TRN")) {
+                            line = reader.readLine();
+                            if (line.trim().equals("{")) {
+                                line = reader.readLine();
+                                Employee emp = null;
+                                if (line.trim().startsWith("EMPLOYEE_CODE ")) {
+                                    emp = findEmployeeFromName(line.trim().substring(14).trim());
+                                }
+                                line = reader.readLine();
+                                if (line.trim().startsWith("TYPE ")) {
+                                    if (line.trim().substring(5).trim().equals("Downpayment")) {
+                                        line = reader.readLine();
+                                        double value = 0;
+                                        if (line.trim().startsWith("VAL ")) {
+                                            value = Double.parseDouble(line.trim().substring(4).trim());
+                                        }
+                                        line = reader.readLine();
+                                        Transaction downpayment = new Downpayment(emp, value);
+                                        if (line.trim().equals("}")) {
+                                            transactions.add(downpayment);
+                                        }//Downpayment
+                                    } else if (line.trim().substring(5).trim().equals("Compensation")) {
+                                        line = reader.readLine();
+                                        ExpenseType type =null;
+                                        if (line.trim().startsWith("EXPENSE_CODE ")) {
+                                            type = findExpenseTypeFromDesc(line.trim().substring(13).trim());
+                                        }
+                                        line = reader.readLine();
+                                        double value = 0;
+                                        if (line.trim().startsWith("VAL ")) {
+                                            value = Double.parseDouble(line.trim().substring(5).trim());
+                                        }
+                                        line = reader.readLine();
+                                        Transaction compensation = new Compensation(emp, value, type);
+                                        if (line.trim().equals("}")) {
+                                            transactions.add(compensation);
+                                        }//Compensation
+                                    } else if (line.trim().substring(5).trim().equals("Finalised")) {
+                                        line = reader.readLine();
+                                        double value = 0;
+                                        if (line.trim().startsWith("VAL ")) {
+                                            value = Double.parseDouble(line.trim().substring(4).trim());
+                                        }
+                                        line = reader.readLine();
+                                        Transaction finalised = new Finalised(emp, value);
+                                        if (line.trim().equals("}")) {
+                                            transactions.add(finalised);
+                                        }//Downpayment
+                                    }
+                                }
+                            }
+                        }//EXPENSE
+                    }
+                }//EXPENSE_LIST
+                line = reader.readLine();
+            }//while
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Error reading line");
+        }
+    }
+
+    void printList() {
+        System.out.println("<<<<<<<<<<<<<<<<<List of Expense Types>>>>>>>>>>>>>>>>");
+        for (ExpenseType expenseType : expenseTypes) {
+            System.out.println(expenseType);
+        }
+        System.out.println("\n<<<<<<<<<<<<<<<<<List of Employees>>>>>>>>>>>>>>>>>");
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+        System.out.println("\n<<<<<<<<<<<<<<<<<List of Expenses>>>>>>>>>>>>>>>>>");
+        for (Expense expense : expenses) {
+            System.out.println(expense);
+        }
+        System.out.println("\n<<<<<<<<<<<<<<<<<List of Transactions>>>>>>>>>>>>>");
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction);
+
+        }
+    }
+
     public void printExpenseList() {
         
-        System.out.println("Priting expense list...");
+        System.out.println(" Priting expense list...");
 
         FileWriter writer = null;
 
         try {
-            writer = new FileWriter(new File("EXPENSES"));
-			writer.write ("EXPENSE_LIST"
-						+"\n"+"{");
+            writer = new FileWriter(new File("EXPENSES.txt"));
+
             for (Expense expense : expenses) {
-                    writer.write ("\n" + "\t" + "EXPENSE"
-								+ "\n" + "\t" + "{" 
-                                + "\n" + "\t\t" + "EMPLOYEE_CODE " + expense.getEmployee()
-                                + "\n" + "\t\t" + "EXPENSE_TYPE "    + findExpenseType(expense.getExpenseType())
-                                + "\n" + "\t\t" + "EXPENSE_CODE " + expense.getExpenseType().getDescription()
-                                + "\n" + "\t\t" + "VAL " + expense.getAmount()
-                                + "\n" + "\t" + "}");
+                    writer.write ("EXPENSE"+"\n"+"{"+"\n"
+                                + "\n"+"\t"+"EMPLOYEE_CODE " + expense.getEmployee().getSurname()
+                                + "\n"+"\t"+"EXPENSE_TYPE "    + findExpenseType(expense.getExpenseType())
+                                //+ "\n"+"\t"+"EXPENSE_CODE " + expense.getID()
+                                + "\n"+"\t"+"VAL " + expense.getAmount()
+                                + "\n"+"}"+"\n");
+                }
+                writer.close();
             }
-			writer.write ("\n"+"}");
-            writer.close();
-        }
 
         catch (IOException e) {
             System.err.println("Error writing file.");
         }
-    }
+    }//CreateFile
     
     public void printTransactionList() {
         
@@ -693,30 +992,26 @@ public class mainApp {
         FileWriter writer = null;
 
         try    {
-            writer = new FileWriter(new File("TRANSACTIONS"));
-			writer.write ("TRN_LIST"
-						+"\n"+"{");
+            writer = new FileWriter(new File("TRANSACTIONS.txt"));
+        
             for (Transaction transaction : transactions) {
-                    writer.write ("\n" + "\t" + "TRN"
-								+ "\n" + "\t" + "{"
-                                + "\n" + "\t\t" + "EMPLOYEE_CODE " + transaction.getEmployee()
-                                + "\n" + "\t\t" + "TYPE " + findTransactionType(transaction));
+                    writer.write ("TRN"+"\n"+"{"+"\n"
+                                + "\n"+"\t"+"EMPLOYEE_CODE " + transaction.getEmployee().getSurname()
+                                + "\n"+"\t"+"TYPE " + findTransactionType(transaction));
                     if (transaction instanceof Compensation) {
                         Compensation compensation = (Compensation) transaction;
-                        writer.write ("\n" + "\t\t" + "EXPENSE_TYPE " + findExpenseType(compensation.getExpenseType())
-                                + "\n" + "\t\t" + "EXPENSE_CODE " + compensation.getExpenseType().getID());
+                        writer.write ("\n"+"\t"+"EXPENSE_TYPE " + findExpenseType(compensation.getExpenseType())
+                                + "\n"+"\t"+"EXPENSE_CODE " + compensation.getExpenseType().getID());
                     }
-                    writer.write ("\n" + "\t\t" + "VAL " + transaction.getValue()
-								+ "\n" + "\t" + "}");
+                    writer.write ("\n"+"\t"+"VAL " + transaction.getValue());
             }
-			writer.write ("\n" + "}");
             writer.close();
         }
             
         catch (IOException e) {
             System.err.println("Error writing file.");
         }
-    }
+    }//CreateFile
     
     int findExpenseType(ExpenseType exp) {
         int type;
@@ -734,7 +1029,7 @@ public class mainApp {
         String trnType;
         
         if (trn instanceof Finalised) {
-            trnType = "Finalised";
+            trnType = "Finsalised";
         }
         else if (trn instanceof Compensation) {
             trnType = "Compensation";
@@ -749,10 +1044,14 @@ public class mainApp {
         return trnType;
     }
     
-    public static void main(String[] args) {
+    
+    //main function
+    public static void main(String[] args) throws IOException {
         System.out.println("Welcome to MainApp!");
-        mainApp myapp = new mainApp();
+        MainApp myapp = new MainApp();
+        myapp.readFile();
+        myapp.printList();
         myapp.mainMenu();
-        myapp.loadData();
+        // myapp.loadData();
     }
 }
