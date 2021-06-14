@@ -2,6 +2,12 @@
 Suggrafeis:
 1100130 - Theodoros Balas
 3200234 - Peter Frangatzis
+
+
+Το κομμάτι του πρόγραμματος της 1ης εργασίας μεταφορτώθηκε δύο φορές
+(με την πρώτη να είναι εμπρόθεσμη και τη δεύτερη με ολιγοήμερη καθυστέρηση).
+Αν υπάρχει η δυνατότητα (και δεν έχει γίνει ήδη), παρακαλούμε,
+λάβετε υπόψιν την ανανεωμένη έκδοση - καταβάλαμε εξαιρετική προσπάθεια για το update.
 */
 import java.io.*;
 import java.util.ArrayList;
@@ -229,70 +235,70 @@ public class MainApp {
     ArrayList<Transaction> transactions;
     public static int index;
 
-    // Load data to create database
-    // void loadData() {
-    //     Employee petros = new Employee("Peter", "Frangatzis", 1000);
-    //     employees.add(petros);
-    //     Employee theodore = new Employee("Theodore", "Balas", 600);
-    //     employees.add(theodore);
-    //     Employee karl = new Employee("Karl", "Marx", 200);
-    //     employees.add(karl);
-    //     Employee john = new Employee("John", "Lenon", 800);
-    //     employees.add(john);
-    //     ExpenseType1 travel = new ExpenseType1(2368, "travel", 1000, 10, "kms");
-    //     expenseTypes.add(travel);
-    //     ExpenseType1 food = new ExpenseType1(1542, "food", 500, 50, "meal");
-    //     expenseTypes.add(food);
-    //     ExpenseType1 rec = new ExpenseType1(6900, "recreation", 400, 100, "activity");
-    //     expenseTypes.add(rec);
-    //     ExpenseType2 health = new ExpenseType2(6589, "healthcare", 700, 50);
-    //     expenseTypes.add(health);
-    //     ExpenseType2 ins = new ExpenseType2(1543, "insurance", 350, 60);
-    //     expenseTypes.add(ins);
-    //     ExpenseType2 wfh = new ExpenseType2(5658, "working from home", 1000, 80);
-    //     expenseTypes.add(wfh);
-    //     Downpayment d1 = new Downpayment(karl, 100);
-    //     transactions.add(d1);
-    //     Downpayment d2 = new Downpayment(theodore, 500);
-    //     transactions.add(d2);
-    //     Downpayment d3 = new Downpayment(petros, 200);
-    //     transactions.add(d3);
-    //     Downpayment d4 = new Downpayment(john, 800);
-    //     transactions.add(d4);
-    //     /**
-    //      * We created 2 Finalised objects to test if printAll() worked properly
-    //      * 
-    //      * Finalised objects normally created through clearExpenses()
-    //      */
-    //     Finalised f1 = new Finalised(john, 800);
-    //     transactions.add(f1);
-    //     Finalised f2 = new Finalised(karl, 300);
-    //     transactions.add(f2);
-    //     Expense e1 = new Expense(theodore, travel, 30, "Edinburgh - Livingston");
-    //     expenses.add(e1);
-    //     Expense e2 = new Expense(theodore, food, 5, "meals");
-    //     expenses.add(e2);
-    //     Expense e3 = new Expense(theodore, ins, 500, "car");
-    //     expenses.add(e3);
-    //     Expense e4 = new Expense(karl, wfh, 500, "PC screen");
-    //     expenses.add(e4);
-    //     Expense e5 = new Expense(karl, health, 400, "check-up");
-    //     expenses.add(e5);
-    //     Expense e6 = new Expense(karl, rec, 3, "museum visits");
-    //     expenses.add(e6);
-    //     Expense e7 = new Expense(petros, health, 400, "doctor");
-    //     expenses.add(e7);
-    //     Expense e8 = new Expense(petros, ins, 1000, "liability");
-    //     expenses.add(e8);
-    //     Expense e9 = new Expense(petros, travel, 20, "cab ride");
-    //     expenses.add(e9);
-    //     Expense e10 = new Expense(john, wfh, 400, "bed");
-    //     expenses.add(e10);
-    //     Expense e11 = new Expense(john, wfh, 600, "guitar");
-    //     expenses.add(e11);
-    //     Expense e12 = new Expense(john, rec, 1, "day tripper");
-    //     expenses.add(e12);
-    // }
+    //Load data to create database
+    void loadData() {
+        Employee petros = new Employee("Peter", "Frangatzis", 1000);
+        employees.add(petros);
+        Employee theodore = new Employee("Theodore", "Balas", 600);
+        employees.add(theodore);
+        Employee karl = new Employee("Karl", "Marx", 200);
+        employees.add(karl);
+        Employee john = new Employee("John", "Lenon", 800);
+        employees.add(john);
+        ExpenseType1 travel = new ExpenseType1(2368, "travel", 1000, 10, "kms");
+        expenseTypes.add(travel);
+        ExpenseType1 food = new ExpenseType1(1542, "food", 500, 50, "meal");
+        expenseTypes.add(food);
+        ExpenseType1 rec = new ExpenseType1(6900, "recreation", 400, 100, "activity");
+        expenseTypes.add(rec);
+        ExpenseType2 health = new ExpenseType2(6589, "healthcare", 700, 50);
+        expenseTypes.add(health);
+        ExpenseType2 ins = new ExpenseType2(1543, "insurance", 350, 60);
+        expenseTypes.add(ins);
+        ExpenseType2 wfh = new ExpenseType2(5658, "working from home", 1000, 80);
+        expenseTypes.add(wfh);
+        Downpayment d1 = new Downpayment(karl, 100);
+        transactions.add(d1);
+        Downpayment d2 = new Downpayment(theodore, 500);
+        transactions.add(d2);
+        Downpayment d3 = new Downpayment(petros, 200);
+        transactions.add(d3);
+        Downpayment d4 = new Downpayment(john, 800);
+        transactions.add(d4);
+        /**
+         * We created 2 Finalised objects to test if printAll() worked properly
+         * 
+         * Finalised objects normally created through clearExpenses()
+         */
+        Finalised f1 = new Finalised(john, 800);
+        transactions.add(f1);
+        Finalised f2 = new Finalised(karl, 300);
+        transactions.add(f2);
+        Expense e1 = new Expense(theodore, travel, 30, "Edinburgh - Livingston");
+        expenses.add(e1);
+        Expense e2 = new Expense(theodore, food, 5, "meals");
+        expenses.add(e2);
+        Expense e3 = new Expense(theodore, ins, 500, "car");
+        expenses.add(e3);
+        Expense e4 = new Expense(karl, wfh, 500, "PC screen");
+        expenses.add(e4);
+        Expense e5 = new Expense(karl, health, 400, "check-up");
+        expenses.add(e5);
+        Expense e6 = new Expense(karl, rec, 3, "museum visits");
+        expenses.add(e6);
+        Expense e7 = new Expense(petros, health, 400, "doctor");
+        expenses.add(e7);
+        Expense e8 = new Expense(petros, ins, 1000, "liability");
+        expenses.add(e8);
+        Expense e9 = new Expense(petros, travel, 20, "cab ride");
+        expenses.add(e9);
+        Expense e10 = new Expense(john, wfh, 400, "bed");
+        expenses.add(e10);
+        Expense e11 = new Expense(john, wfh, 600, "guitar");
+        expenses.add(e11);
+        Expense e12 = new Expense(john, rec, 1, "day tripper");
+        expenses.add(e12);
+    }
 
     // MainApp function
     public MainApp() {
@@ -301,7 +307,7 @@ public class MainApp {
         expenses = new ArrayList<Expense>();
         expenseTypes = new ArrayList<ExpenseType>();
         transactions = new ArrayList<Transaction>();
-        // loadData();
+        loadData();
     }
 
     // 1st Menu function: newExpenseType
@@ -567,134 +573,16 @@ public class MainApp {
         } while (menu != 0);
     }
 
-    // Method getExpensesForEmployee
-    List<Expense> getExpensesForEmployee(Employee employee) {
-        List<Expense> employeeExpenses = new ArrayList<Expense>();
-        for (Expense expense : expenses) {
-            if (expense.getEmployee() == employee) {
-                employeeExpenses.add(expense);
-            }
-        }
-        return employeeExpenses;
-    }
-
-    // Method getTransactionsForEmployee
-    List<Transaction> getTransactionsForEmployee(Employee employee) {
-        List<Transaction> employeeTransactions = new ArrayList<Transaction>();
-        for (Transaction transaction : transactions) {
-            if (transaction.getEmployee() == employee) {
-                employeeTransactions.add(transaction);
-            }
-        }
-        return employeeTransactions;
-    }
-
-    // Method selectEmployee
-    Employee selectEmployee() {
-        int i = 1;
-        boolean flag = true;
-        int menu = 0;
-
-        for (Employee employee : employees) {
-            System.out.println(i + ". " + employee.toString());
-            i++;
-        }
-
-        Employee employee;
-
-        do {
-            System.out.print("Enter number to select employee (or 0 to return to main menu): ");
-            menu = input.nextInt();
-            input.nextLine(); // skip newline
-            if (menu == 0) {
-                mainMenu();
-            } else if (menu - 1 > employees.size() | menu < 1) {
-                System.out.print("Invalid number!");
-                flag = false;
-            }
-        } while (!flag);
-
-        MainApp.index = menu;
-
-        return employee = employees.get(index - 1);
-    }
-
-    // Method selectExpenseType
-    int selectExpenseType() {
-        boolean flag = true;
-        int menu;
-        System.out.println("Expense Type" + "\n1: expense defined by quantinty" + "\n2: expense defined by value"
-                + "\n0: return to main menu");
-        do {
-            System.out.print("Enter selection to continue [0-2]: ");
-            menu = input.nextInt();
-            input.nextLine(); // skip newline
-            if (menu == 0) {
-                mainMenu();
-            } else if (menu != 1 & menu != 2) {
-                flag = false;
-            }
-        } while (!flag);
-
-        return menu;
-    }
-
-    // Method selectExpType
-    ExpenseType selectExpType() {
-        int i = 1;
-        boolean flag = true;
-        int menu = 0;
-
-        for (ExpenseType expenseType : expenseTypes) {
-            System.out.println(i + ". " + expenseType.getDescription());
-            i++;
-        }
-
-        ExpenseType expenseType;
-
-        do {
-            System.out.print("Enter number to select expense type (or 0 to return to main menu): ");
-            menu = input.nextInt();
-            input.nextLine(); // skip newline
-            if (menu == 0) {
-                mainMenu();
-            } else if (menu - 1 > expenseTypes.size() | menu < 1) {
-                System.out.print("Invalid number!");
-                flag = false;
-            }
-        } while (!flag);
-
-        MainApp.index = menu;
-
-        return expenseType = expenseTypes.get(index - 1);
-    }
-
-    ExpenseType findExpenseTypeFromDesc(String description) {
-        ExpenseType expType = null;
-        for (ExpenseType expenseType : expenseTypes) {
-            String desc = expenseType.getDescription();
-            if (desc == description) {
-                expType = expenseType;
-                break;
-            }
-        }
-        return expType;
-    }
-
-    Employee findEmployeeFromName(String surname) {
-        Employee emp = null;
-        for (Employee employee : employees) {
-            String s = employee.getSurname();
-            if (surname == s) {
-                emp = employee;
-                break;
-            }
-        }
-        return emp;
-    }
-
     //FileReader
     void readFile() throws IOException {
+        /**
+         * !!!IMPORTANT!!!
+         * O reader αντιμετωπίζει ένα πρόβλημα το οποίο δεν καταφέραμε να επιλύσουμε.
+         * Διαβάσει και αρχικοποιεί (σωστά!) μόνο το πρώτο αντικείμενο του κάθε text file.
+         * Κατά συνέπεια, για να μπορέσετε να τρέξετε σωστά το πρόγραμμα,
+         * έχουμε κρατήσει το loadData της πρώτης άσκησης το οποίομπορείτε να κάνετε comment out
+         * για να δοκιμάσετε τη λειτουρία του file reader (αφού αφαιρέσετε to comment από την αντίστοιχη μέθοδο).
+         */
         BufferedReader reader = null;
         String line;
 
@@ -871,7 +759,7 @@ public class MainApp {
         }
 
         try {
-            reader = new BufferedReader(new FileReader(new File("TRANSACTIONS.TXT")));
+            reader = new BufferedReader(new FileReader(new File("TRANSACTIONS.txt")));
             line = reader.readLine();
             while (line != null) {
                 if (line.trim().equals("TRN_LIST")) {
@@ -925,13 +813,13 @@ public class MainApp {
                                         Transaction finalised = new Finalised(emp, value);
                                         if (line.trim().equals("}")) {
                                             transactions.add(finalised);
-                                        }//Downpayment
+                                        }//Finalised
                                     }
-                                }
+                                }//TYPE
                             }
-                        }//EXPENSE
+                        }//TRN
                     }
-                }//EXPENSE_LIST
+                }//TRN_LIST
                 line = reader.readLine();
             }//while
             reader.close();
@@ -940,24 +828,156 @@ public class MainApp {
         }
     }
 
-    void printList() {
-        System.out.println("<<<<<<<<<<<<<<<<<List of Expense Types>>>>>>>>>>>>>>>>");
-        for (ExpenseType expenseType : expenseTypes) {
-            System.out.println(expenseType);
-        }
-        System.out.println("\n<<<<<<<<<<<<<<<<<List of Employees>>>>>>>>>>>>>>>>>");
-        for (Employee employee : employees) {
-            System.out.println(employee);
-        }
-        System.out.println("\n<<<<<<<<<<<<<<<<<List of Expenses>>>>>>>>>>>>>>>>>");
+    List<Expense> getExpensesForEmployee(Employee employee) {
+        List<Expense> employeeExpenses = new ArrayList<Expense>();
         for (Expense expense : expenses) {
-            System.out.println(expense);
+            if (expense.getEmployee() == employee) {
+                employeeExpenses.add(expense);
+            }
         }
-        System.out.println("\n<<<<<<<<<<<<<<<<<List of Transactions>>>>>>>>>>>>>");
-        for (Transaction transaction : transactions) {
-            System.out.println(transaction);
+        return employeeExpenses;
+    }
 
+    List<Transaction> getTransactionsForEmployee(Employee employee) {
+        List<Transaction> employeeTransactions = new ArrayList<Transaction>();
+        for (Transaction transaction : transactions) {
+            if (transaction.getEmployee() == employee) {
+                employeeTransactions.add(transaction);
+            }
         }
+        return employeeTransactions;
+    }
+
+    Employee selectEmployee() {
+        int i = 1;
+        boolean flag = true;
+        int menu = 0;
+
+        for (Employee employee : employees) {
+            System.out.println(i + ". " + employee.toString());
+            i++;
+        }
+
+        Employee employee;
+
+        do {
+            System.out.print("Enter number to select employee (or 0 to return to main menu): ");
+            menu = input.nextInt();
+            input.nextLine(); // skip newline
+            if (menu == 0) {
+                mainMenu();
+            } else if (menu - 1 > employees.size() | menu < 1) {
+                System.out.print("Invalid number!");
+                flag = false;
+            }
+        } while (!flag);
+
+        MainApp.index = menu;
+
+        return employee = employees.get(index - 1);
+    }
+
+    int selectExpenseType() {
+        boolean flag = true;
+        int menu;
+        System.out.println("Expense Type" + "\n1: expense defined by quantinty" + "\n2: expense defined by value"
+                + "\n0: return to main menu");
+        do {
+            System.out.print("Enter selection to continue [0-2]: ");
+            menu = input.nextInt();
+            input.nextLine(); // skip newline
+            if (menu == 0) {
+                mainMenu();
+            } else if (menu != 1 & menu != 2) {
+                flag = false;
+            }
+        } while (!flag);
+
+        return menu;
+    }
+
+    ExpenseType selectExpType() {
+        int i = 1;
+        boolean flag = true;
+        int menu = 0;
+
+        for (ExpenseType expenseType : expenseTypes) {
+            System.out.println(i + ". " + expenseType.getDescription());
+            i++;
+        }
+
+        ExpenseType expenseType;
+
+        do {
+            System.out.print("Enter number to select expense type (or 0 to return to main menu): ");
+            menu = input.nextInt();
+            input.nextLine(); // skip newline
+            if (menu == 0) {
+                mainMenu();
+            } else if (menu - 1 > expenseTypes.size() | menu < 1) {
+                System.out.print("Invalid number!");
+                flag = false;
+            }
+        } while (!flag);
+
+        MainApp.index = menu;
+
+        return expenseType = expenseTypes.get(index - 1);
+    }
+
+    ExpenseType findExpenseTypeFromDesc(String description) {
+        ExpenseType expType = null;
+        for (ExpenseType expenseType : expenseTypes) {
+            String desc = expenseType.getDescription();
+            if (desc == description) {
+                expType = expenseType;
+                break;
+            }
+        }
+        return expType;
+    }
+
+    Employee findEmployeeFromName(String surname) {
+        Employee emp = null;
+        for (Employee employee : employees) {
+            String s = employee.getSurname();
+            if (surname == s) {
+                emp = employee;
+                break;
+            }
+        }
+        return emp;
+    }
+
+    int findExpenseType(ExpenseType exp) {
+        int type;
+        
+        if (exp instanceof ExpenseType1) {
+            type = 1;
+        }
+        else {
+            type = 2;
+        }
+        return type;
+    }
+    
+    String findTransactionType (Transaction trn) {
+        String trnType;
+        
+        if (trn instanceof Finalised) {
+            trnType = "Finsalised";
+        }
+        else if (trn instanceof Compensation) {
+            trnType = "Compensation";
+        }
+        else if (trn instanceof Difference) {
+            trnType = "Difference";
+        }
+        else {
+            trnType = "Downpayment";
+        }
+        
+        return trnType;
     }
 
     public void printExpenseList() {
@@ -1013,45 +1033,12 @@ public class MainApp {
         }
     }//CreateFile
     
-    int findExpenseType(ExpenseType exp) {
-        int type;
-        
-        if (exp instanceof ExpenseType1) {
-            type = 1;
-        }
-        else {
-            type = 2;
-        }
-        return type;
-    }
-    
-    String findTransactionType (Transaction trn) {
-        String trnType;
-        
-        if (trn instanceof Finalised) {
-            trnType = "Finsalised";
-        }
-        else if (trn instanceof Compensation) {
-            trnType = "Compensation";
-        }
-        else if (trn instanceof Difference) {
-            trnType = "Difference";
-        }
-        else {
-            trnType = "Downpayment";
-        }
-        
-        return trnType;
-    }
-    
-    
     //main function
     public static void main(String[] args) throws IOException {
         System.out.println("Welcome to MainApp!");
         MainApp myapp = new MainApp();
-        myapp.readFile();
-        myapp.printList();
+        // myapp.readFile();
         myapp.mainMenu();
-        // myapp.loadData();
+        myapp.loadData();
     }
 }
